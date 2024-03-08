@@ -1,0 +1,65 @@
+```
+#파이썬
+n=input()
+m=0
+maVal=''
+minVal=''
+cnt=0
+for i in n:
+    if i=='K':
+        if m>0:
+            maVal+=str(5*10**m)
+            minVal+=str(10**m+5)
+            m=0
+        else:
+            maVal+='5'
+            minVal+='5'
+    else:
+        m+=1
+#끝자리가 연속된 M일 경우
+if m>0:
+    maVal+='1'*m
+    minVal+=str(10**(m-1))
+print(maVal)
+print(minVal)
+```
+
+```
+//Java
+import java.util.*;
+import java.math.BigInteger;
+public class Main{
+     public static void main(String[] args){
+         Scanner sc = new Scanner(System.in);
+         String n =sc.nextLine();
+         int m= 0;
+         BigInteger b=new BigInteger("10");
+         String maVal="";
+         String minVal="";
+         for(int i=0; i<n.length();i++){
+             if(n.charAt(i)=='K') {
+                 if (m > 0) {
+                     maVal += b.pow(m).multiply(new BigInteger("5"));
+                     minVal += ( b.pow(m).add(new BigInteger("5")) );
+                    m=0;
+                 }
+                 else{
+                     maVal+='5';
+                     minVal+='5';
+                 }
+             }
+             else{
+                 m+=1;
+             }
+         }
+         if(m>0)
+         {
+             for(int i=0;i<m;i++)
+                maVal+='1';
+             minVal+=b.pow(m-1);
+         }
+        System.out.println(maVal);
+         System.out.println(minVal);
+     }
+}
+```
