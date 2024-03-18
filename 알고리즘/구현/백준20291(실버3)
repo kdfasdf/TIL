@@ -1,0 +1,15 @@
+python:딕셔너리 정렬 후 리스트로 반환
+```
+#python
+n=int(input())
+d={}
+for i in range(n):
+    a,b=input().split('.')
+    if b not in d:
+        d[b]=1
+    else:
+        d[b]+=1
+d=sorted(d.items())
+for i in range(len(d)):
+    print(d[i][0],d[i][1])
+```
