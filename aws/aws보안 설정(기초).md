@@ -36,7 +36,7 @@
     4. 권한 옵션에서 직접 옵션 선택 후 IAM 유저에 필요한 권한 부여
        - 필요한 용도에 따라 https://docs.aws.amazon.com/iam/에서 찾아서 추가하면 된다
        - 기본적으로 administratoraccess, IAMUserChangePassword 두개가 자동으로 추가되어 있는데 administratoraccess는 삭제하고(IAM 유저 생성, 관리 권한을 제외하고 거의 모든 권한을 IAM 유저한테 주는 정책임)
-       - AmazonEC2ReadOnlyAccess와(ec2 생성은 불허하고 실행과 중지만 이용할 수 있게 하는 정책), budget 작업 추가를 위해 AWSBudgetsActions_RolePolicyForResourceAdministrationWithSSM 권한을 부여했다.
+       - AmazonEC2FullAccess와, budget 작업 추가를 위해 AWSBudgetsActions_RolePolicyForResourceAdministrationWithSSM 권한을 부여했다.
 
 ##  3. Budgets 설정 
 
