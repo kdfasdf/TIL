@@ -1,0 +1,64 @@
+## 서론
+
+캡스톤 디자인이나 산학 공동 프로젝트할 때 클라우드 환경에 접속하기 위해 VMWare에 우분투를 깔아서 사용했었다.
+가상 머신으로 우분투를 사용하면 GUI 환경이 간편하게 제공되고 윈도우 환경과 완전히 분리되는 것이 장점이다. 
+하지만 가상 머신으로 우분투를 사용하면 살짝 느리고 원격 서버에 접속할 때 마다 가상머신을 키는게 조금 번거로우므로
+wsl을 통해 우분투를 사용해보기로 했다.
+
+
+윈도우 10버전 빌드 19041 이상에서 가능
+
+우선 windows terminal을 설치하고 windows terminal로 
+powershell 관리자 권한으로 키고 아래 순서대로 실행한다.
+
+1. wsl 설치
+
+```
+wsl --list --online #사용 가능한 배포
+wsl --install <Ubuntu 버전>
+```
+우분투가 설치되면 id 비밀번호 설정을 해주어야 한다
+
+2. wsl 기본값 2로 변경
+```
+wsl --set-default-version 2
+```
+3~4는 윈도우 기능 켜기로도 가능하다
+    
+3. microsoft-windows-subsystem-linux 기능 활성화 
+   ```
+   dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+   ```
+
+4. virtualmachineplatform 기능 활성화
+   ```
+   dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+   ```
+
+5. 윈도우 기능 켜기에서 hyper-v 실행
+  - 필자의 컴퓨터에는 hyper -v 가 설치되어 있지 않아 bat 파일을 만들어서 깔아줘야 했었다
+  - 아래 bat 파일을 만들어 관리자 권한으로 실행
+  - installhyper-v.bat
+    ```
+    @echo off
+    pushd "%~dp0"
+    dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum >hyper-v.txt
+    for /f %%i in ('findstr /i . hyper-v.txt 2^>nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
+    del hyper-v.txt
+    Dism /online /enable-feature /featurename:Microsoft-Hyper-V -All /LimitAccess /ALL
+    ```
+
+6. 설치한 우분투 wsl에 등록
+   ```
+   wsl --list --verbose #설치한 우분투 버전 확인
+   wsl --set-version Ubuntu-20.04 2 # wsl --set-version <우분투 버전> <wsl 종류>
+   ```
+
+error: 0x80370102 위 과정에서 나타날 수 있는 에러인데 나타나는 원인은 바이오스 가상화 설정이나 주로
+windows 기능에서 virtualmachineplatform, microsoft-windows-subsystem-linux 기능, hyper -v 가 체크가 안되어 있을 때 나타난다
+하지만 위에서 3~4 기능을 켜줬으므로 hyper-v를 체크해주면 된다
+hyper-v가 windows 기능 켜기에 체크 되어 있어도 기존에 vmware를 사용하고 있다면 충돌을 일으켜 에러가 날 수 있는데
+관리자 권한으로 power shell을 켜서 
+Vmware을 사용할 때 : bcdedit /set hypervisorlaunchtype off
+WSL2을 사용할 때 : bcdedit /set hypervisorlaunchtype auto
+을 쳐주고 재부팅을 하면 우분투가 정상적으로 설치된다
