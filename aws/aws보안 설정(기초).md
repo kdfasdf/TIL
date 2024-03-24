@@ -50,5 +50,5 @@
       5. 알림 임계값 설정 임계값, 이메일 수신자 입력
       6. 작업 추가 ->IAM 역할 선택, AWSBudgetsActions_RolePolicyForResourceAdministrationWithSSM 선택
       7. Automate instances to stop for EC2 or RDS 선택
-      8. 리전 선택 후자동 중단 할 EC2 RDS 선택
+      8. 리전 선택 후 자동 중단 할 EC2 혹은 RDS 선택
   
