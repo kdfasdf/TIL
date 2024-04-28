@@ -56,7 +56,7 @@ readLine() 메서드는 한 줄이 라인피드(LF) ('\n') 혹은 캐리지 리�
 CR , LF, CRLF 와 같은 라인 종료 문자들을 포함하지 않은 즉 CR , LF, CRLF을 읽기 전 까지의 문자열을 return 한다 만약 스트림의 끝에 도달하면 null을 return 한다
 
 따라서 while 문 안에서 readLine()이 한줄 씩 읽어서 request message 의 header부분을 읽어나간다 그리고 header부분에 끝에 다다랐을 떄 첫 번째 CRLF를 만나 마지막 
-header 메시지가 저장되고 두번째CRLF를 만나면 두번쨰CRLF 바로 이전문자가 CRLF였으므로 읽어들일 문자가 없어 ""인 것이다 따라서 반복문 탈출할 시 더 이상 읽을 헤더정보는 없고
+header 메시지가 저장되고 두번째CRLF를 만나면 두번쨰CRLF 바로 이전문자가 CRLF였으므로 읽어들일 문자가 없어 null인 것이다 따라서 반복문 탈출할 시 더 이상 읽을 헤더정보는 없고
 body 정보를 읽을 수 있는 것이다.
 
 결과적으로 request body message를 읽는 코드는 다음과 같이 구현할 수 있다.
