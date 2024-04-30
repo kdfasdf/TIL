@@ -1,6 +1,4 @@
-![image](https://github.com/kdfasdf/TIL/assets/96770726/ccbbb54c-cc50-4612-af97-1de7075b6446)[[https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV4suNtaXFEDFAUf](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5PoOKKAPIDFAUq)
-
-[Uploading image.png…]()
+https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5PoOKKAPIDFAUq
 
 ## 풀이
 우선 내가 짠 알고리즘을 설명해보자면
@@ -11,6 +9,7 @@
 한단계 더 깊은 DFS를 수행하고나서 봉우리와 flag 값을 원래 값으로 다시 수정해준다
 
 <br>
+
 - python
 ```
 def dfs(x,y):
