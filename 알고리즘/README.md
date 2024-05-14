@@ -10,3 +10,4 @@
 3. 구현문제에서 헷갈릴 요소(조건으로 쓸 자료?)를 정리하고 생각해보는게 좋다
 4. 재귀로 return 값 받을 떄 주의할 점
    - https://velog.io/@munang/%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC-Python-None-%EB%A6%AC%ED%84%B4%ED%95%98%EB%8A%94-%EA%B2%BD%EC%9A%B0-%EC%9E%AC%EA%B7%80%ED%95%A8%EC%88%98-None-%EB%A6%AC%ED%84%B4
+5. 백트래킹 문제를 풀 때는 기본 자료형으로 관리할 수 있으면 기본 자료형으로 관리하라(리스트보다 빠름)
