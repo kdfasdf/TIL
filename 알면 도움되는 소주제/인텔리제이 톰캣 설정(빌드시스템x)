@@ -1,0 +1,5 @@
+### 인텔리제이 빌드 시스템 없이 톰켓 설정하기(글로만 정리)
+1. Project Structure에서 module 선택
+2. module에서 + 선택 후 web 선택 후 우측 하단 artifact 설정 알림 진행
+3. edit configuration에서 + 선택 후 tomcat local 선택
+4. 우측 하단 배포 artifact 설정 후 OK
