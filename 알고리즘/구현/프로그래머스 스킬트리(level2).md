@@ -6,6 +6,7 @@ Hashset을 사용하여 풀이
 2. 스킬트리를 한 문자 단위로 탐색
 3. 스킬트리의 특정 인덱스의 문자가 해시셋에 존재하면 스킬의 순서에 맞게 나왔는지 확인
 
+
 - Java
 ```
 import java.util.*;
@@ -40,6 +41,57 @@ class Solution {
             System.out.println();
             if(flag) answer+=1;
         }
+        return answer;
+    }
+}
+```
+해시셋을 사용하지 않고 비슷한 알고리즘으로 풀이할 수 있었다
+```
+class Solution {
+    public int solution(String skill, String[] skill_trees) {
+        int answer = 0;
+        for (String skillTree : skill_trees) {
+            int learningIdx = 0;
+            boolean isAble = true;
+            for (char curSkill : skillTree.toCharArray()) {
+                int skillIdx = skill.indexOf(curSkill);
+                if (skillIdx == -1)
+                    continue;
+                else if (skillIdx == learningIdx)
+                    learningIdx++;
+                else {
+                    isAble = false;
+                    break;
+                }
+            }
+            if (isAble)
+                answer++;
+        }
+        return answer;
+    }
+}
+```
+
+<br>
+정규식을 활용하면 간략하게 풀 수 있었다
+- 정규표현식
+
+```
+import java.util.*;
+
+class Solution {
+    public int solution(String skill, String[] skill_trees) {
+        int answer = 0;
+        ArrayList<String> skillTrees = new ArrayList<String>(Arrays.asList(skill_trees));
+        //ArrayList<String> skillTrees = new ArrayList<String>();
+        Iterator<String> it = skillTrees.iterator();
+
+        while (it.hasNext()) {
+            if (skill.indexOf(it.next().replaceAll("[^" + skill + "]", "")) != 0) {
+                it.remove();
+            }
+        }
+        answer = skillTrees.size();
         return answer;
     }
 }
